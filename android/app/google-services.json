@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "723264196190",
+    "project_id": "helpinblood-3bed9",
+    "storage_bucket": "helpinblood-3bed9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:723264196190:android:b306a58618c5c0dbfd6ecf",
+        "android_client_info": {
+          "package_name": "com.example.blood_bank"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "723264196190-ui14e2rgccl02lu9cqof4jl66rnmde41.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.blood_bank",
+            "certificate_hash": "f62899c2c8037b4ea7a181e111407fcf979c6ed1"
+          }
+        },
+        {
+          "client_id": "723264196190-gdtcaa2k8edacnna67ouarvk6jtmm0mg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWKZwuldXctjkkNcnYJ1ETqGRWnT6Mbgw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "723264196190-gdtcaa2k8edacnna67ouarvk6jtmm0mg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
