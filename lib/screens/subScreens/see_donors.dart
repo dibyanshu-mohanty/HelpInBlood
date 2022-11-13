@@ -79,7 +79,7 @@ class _SeeDonorScreenState extends State<SeeDonorScreen> {
                             color: Color(0xFF7209b7),
                             borderRadius: BorderRadius.circular(10.0),
                           ),
-                          child: Text(
+                          child: const Text(
                             "Done",
                             textAlign: TextAlign.center,
                             style: TextStyle(

@@ -87,7 +87,7 @@ class _DonorRegFormState extends State<DonorRegForm> {
       await ref1.putFile(report);
       final reportUrl = await ref1.getDownloadURL();
       await FirebaseFirestore.instance
-          .collection('requests')
+          .collection('users')
           .doc(_authResult!.uid)
           .set({
         "name": name,
@@ -98,6 +98,7 @@ class _DonorRegFormState extends State<DonorRegForm> {
         "address": '$city , $state , $pincode',
         "idUrl": idUrl,
         "reportUrl": reportUrl,
+        "isValid" : false,
       });
       setState((){
         _isLoading = false;

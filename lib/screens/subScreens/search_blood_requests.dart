@@ -20,6 +20,7 @@ class SearchBloodRequests extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0.0,
+          title: Text("Search Blood Requests",style: TextStyle(fontSize: 4.w,fontWeight: FontWeight.w300,color: Colors.black),),
           leading: IconButton(
               onPressed: () {
                 Navigator.pop(context);
@@ -61,7 +62,7 @@ class SearchBloodRequests extends StatelessWidget {
                       color: Color(0xFFE60026),
                       borderRadius: BorderRadius.circular(10.0),
                     ),
-                    child: Text(
+                    child: const Text(
                       "Search For Requests",
                       textAlign: TextAlign.center,
                       style: TextStyle(

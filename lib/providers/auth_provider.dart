@@ -11,7 +11,7 @@ class AuthState {
     )
             .catchError((e) {
       Fluttertoast.showToast(
-          msg: "Please check network",
+          msg: e.toString(),
           gravity: ToastGravity.BOTTOM,
           toastLength: Toast.LENGTH_LONG,
           backgroundColor: Colors.redAccent,
