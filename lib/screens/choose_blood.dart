@@ -28,12 +28,13 @@ class _ChooseBloodState extends State<ChooseBlood> {
         appBar: AppBar(
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           elevation: 0.0,
+          title: Text("Request Blood",style: TextStyle(fontSize: 4.w,fontWeight: FontWeight.w300,color: Colors.black),),
           leading: GestureDetector(
             onTap: () {
               Provider.of<RequestBlood>(context, listen: false).emptyBloodList();
               Navigator.pop(context);
             },
-            child: Icon(
+            child: const Icon(
               Icons.arrow_back_ios_new,
               color: Colors.black,
             ),
@@ -43,10 +44,10 @@ class _ChooseBloodState extends State<ChooseBlood> {
         extendBody: true,
         body: SafeArea(
             child: Container(
-          margin: EdgeInsets.symmetric(horizontal: 10.0),
+          margin: const EdgeInsets.symmetric(horizontal: 10.0),
           child: ListView(
             children: [
-              Container(
+              SizedBox(
                 width: 80.w,
                 height: 40.h,
                 child: Image.asset("assets/images/search_blood.jpg"),
@@ -79,17 +80,17 @@ class _ChooseBloodState extends State<ChooseBlood> {
               kSizedBox,
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
+                children: const [
                   ChooseBloodGroup(title: "A+"),
-                  ChooseBloodGroup(title: "A-"),
-                  ChooseBloodGroup(title: "B+"),
-                  ChooseBloodGroup(title: "B-"),
+                   ChooseBloodGroup(title: "A-"),
+                   ChooseBloodGroup(title: "B+"),
+                   ChooseBloodGroup(title: "B-"),
                 ],
               ),
               kSizedBox,
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
+                children: const [
                   ChooseBloodGroup(title: "O+"),
                   ChooseBloodGroup(title: "O-"),
                   ChooseBloodGroup(title: "AB+"),
@@ -121,13 +122,13 @@ class _ChooseBloodState extends State<ChooseBlood> {
                 child: Container(
                   padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
                   decoration: BoxDecoration(
-                    gradient: LinearGradient(colors: [
+                    gradient: const LinearGradient(colors: [
                       Color(0xFFE60026),
                       Color(0xFFbc0a3c),
                     ], begin: Alignment.centerLeft, end: Alignment.centerRight),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
-                  child: Text(
+                  child: const Text(
                     "Request Blood",
                     textAlign: TextAlign.center,
                     style: TextStyle(

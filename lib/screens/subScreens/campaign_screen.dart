@@ -20,6 +20,7 @@ class CampaignScreen extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0.0,
+          title: Text("Blood Donation Campaigns",style: TextStyle(fontSize: 4.w,fontWeight: FontWeight.w300,color: Colors.black),),
           leading: IconButton(
               onPressed: () {
                 Navigator.pop(context);
@@ -37,95 +38,91 @@ class CampaignScreen extends StatelessWidget {
                   future: getCampaigns(),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Center(
+                      return const Center(
                         child: CircularProgressIndicator(
                           strokeWidth: 2.0,
                         ),
                       );
                     }
-                    return Column(
-                      children: [
+                    return ListView.builder(
+                      itemCount: camps.length,
+                      itemBuilder : (context,index) =>
                         Container(
                           width: double.infinity,
                           margin: const EdgeInsets.symmetric(
                               horizontal: 10.0, vertical: 6.0),
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10.0),
-                            border: Border.all(color: Colors.black,width: 1.0)
+                              borderRadius: BorderRadius.circular(10.0),
+                              border: Border.all(color: Colors.black,width: 1.0)
                           ),
-                          child: Column(
+                          child: ExpansionTile(
+                            childrenPadding:  const EdgeInsets.symmetric(
+                                horizontal: 5.0, vertical: 2.0),
+                            leading: const CircleAvatar(
+                              radius: 20.0,
+                              backgroundColor: Colors.deepOrangeAccent,
+                              child: Icon(
+                                Icons.campaign_outlined,
+                                color: Colors.black,
+                              ),
+                            ),
+                            title: Text(
+                              "${camps[index]["title"]}",
+                            ),
+                            iconColor: Colors.black,
+                            textColor: Colors.black,
                             children: [
-                              ExpansionTile(
-                                childrenPadding:  const EdgeInsets.symmetric(
-                                    horizontal: 5.0, vertical: 2.0),
-                                leading: const CircleAvatar(
-                                  radius: 20.0,
-                                  backgroundColor: Colors.deepOrangeAccent,
-                                  child: Icon(
-                                    Icons.campaign_outlined,
-                                    color: Colors.black,
-                                  ),
-                                ),
+                              ListTile(
                                 title: Text(
-                                  "Blood Donation Camp",
+                                  "By:",
+                                  style: TextStyle(
+                                      fontSize: 3.w,
+                                      fontWeight: FontWeight.w400),
                                 ),
-                                children: [
-                                  ListTile(
-                                    title: Text(
-                                      "By:",
-                                      style: TextStyle(
-                                          fontSize: 3.w,
-                                          fontWeight: FontWeight.w400),
-                                    ),
-                                    subtitle: Text(
-                                      "Times of India".toString(),
-                                      style: TextStyle(fontSize: 4.w),
-                                    ),
-                                  ),
-                                  ListTile(
-                                    title: Text(
-                                      "Date:",
-                                      style: TextStyle(
-                                          fontSize: 3.w,
-                                          fontWeight: FontWeight.w400),
-                                    ),
-                                    subtitle: Text(
-                                      "12 November 2022",
-                                      style: TextStyle(fontSize: 4.w),
-                                    ),
-                                  ),
-                                  ListTile(
-                                    title: Text(
-                                      "Time:",
-                                      style: TextStyle(
-                                          fontSize: 3.w,
-                                          fontWeight: FontWeight.w400),
-                                    ),
-                                    subtitle: Text(
-                                      "8:00 AM to 10:00 AM",
-                                      style: TextStyle(fontSize: 4.w),
-                                    ),
-                                  ),
-                                  ListTile(
-                                    title: Text(
-                                      "Location :",
-                                      style: TextStyle(
-                                          fontSize: 3.w,
-                                          fontWeight: FontWeight.w400),
-                                    ),
-                                    subtitle: Text(
-                                      "TOI Office, Bhubaneswar",
-                                      style: TextStyle(fontSize: 4.w),
-                                    ),
-                                  ),
-                                ],
-                                iconColor: Colors.black,
-                                textColor: Colors.black,
+                                subtitle: Text(
+                                  "${camps[index]["organisedBy"]}",
+                                  style: TextStyle(fontSize: 4.w),
+                                ),
+                              ),
+                              ListTile(
+                                title: Text(
+                                  "Date:",
+                                  style: TextStyle(
+                                      fontSize: 3.w,
+                                      fontWeight: FontWeight.w400),
+                                ),
+                                subtitle: Text(
+                                  "${camps[index]["date"]}",
+                                  style: TextStyle(fontSize: 4.w),
+                                ),
+                              ),
+                              ListTile(
+                                title: Text(
+                                  "Time:",
+                                  style: TextStyle(
+                                      fontSize: 3.w,
+                                      fontWeight: FontWeight.w400),
+                                ),
+                                subtitle: Text(
+                                  "${camps[index]["time"]}",
+                                  style: TextStyle(fontSize: 4.w),
+                                ),
+                              ),
+                              ListTile(
+                                title: Text(
+                                  "Location :",
+                                  style: TextStyle(
+                                      fontSize: 3.w,
+                                      fontWeight: FontWeight.w400),
+                                ),
+                                subtitle: Text(
+                                  "${camps[index]["location"]}",
+                                  style: TextStyle(fontSize: 4.w),
+                                ),
                               ),
                             ],
                           ),
                         ),
-                      ],
                     );
                   })),
         ));

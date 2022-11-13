@@ -15,9 +15,19 @@ class Donors with ChangeNotifier{
   List<Map<String,dynamic>> get donors{
     return [..._donors];
   }
-  List<Map<String,dynamic>> _requests =[];
-  List<Map<String,dynamic>> get requests{
+  List _requests =[];
+  List get requests{
     return [..._requests];
+  }
+
+  List _completedRequests =[];
+  List get completedRequests{
+    return [..._completedRequests];
+  }
+
+  List _completedDonors =[];
+  List get completedDonors{
+    return [..._completedDonors];
   }
 
   bool _isChecked = false;
@@ -27,15 +37,17 @@ class Donors with ChangeNotifier{
   }
   Future<void> submitData(BuildContext context,String phone, List<String> bloods) async{
     // Provider.of<RequestBlood>(context, listen: false).emptyBloodList();
+    final location =
+    await Provider.of<Locations>(context, listen: false)
+        .getLocation();
+    final loc = {"latitude" : location.latitude , "longitude": location.longitude};
     FirebaseFirestore.instance.collection("bloodRequests").add({
       "requestedBy" : phone,
       "requiredBlood" : bloods,
       "isFulfilled" : false,
+      "location" : loc,
       "time" : DateFormat.yMMMd().format(DateTime.now()),
     });
-    final location =
-    await Provider.of<Locations>(context, listen: false)
-        .getLocation();
     GeoFirePoint center = Geoflutterfire().point(latitude: location.latitude, longitude: location.longitude);
     var collectionReference = FirebaseFirestore.instance.collection('locations');
     double radius = 20;
@@ -47,6 +59,7 @@ class Donors with ChangeNotifier{
         await FirebaseFirestore.instance.collection("users").doc(donorElement.id).collection("notifications").add({
           "requestedBy": phone,
           "requiredBlood": bloods,
+          "location" : loc,
         });
         Provider.of<RequestBlood>(context, listen: false).emptyBloodList();
       });
@@ -67,21 +80,39 @@ class Donors with ChangeNotifier{
       notifyListeners();
     });
   }
+
+  Future<void> getCompletedRequestDonors(String id) async{
+    final approvedDonors = await FirebaseFirestore.instance.collection("bloodRequests").doc(id).collection("approvedUsers").get();
+    approvedDonors.docs.forEach((element) async{
+      final doc = await FirebaseFirestore.instance.collection("users").doc(element["userId"]).get();
+      if(doc.exists){
+        _completedDonors.add({
+          "name" : doc["name"],
+          "phone" : doc["phone"],
+          "bloodGroup" : doc["bloodGroup"]
+        });
+      }
+      notifyListeners();
+    });
+  }
   
   Future<void> checkRequestHistory(BuildContext context,String phone) async{
     final results = await FirebaseFirestore.instance.collection("bloodRequests").get();
-    final searchResults = results.docs.where((element) => element["requestedBy"] == phone);
+    final searchResults = results.docs.where((element) => element["requestedBy"] == phone && element["isFulfilled"] == false);
+    final doneResults = results.docs.where((element) => element["requestedBy"] == phone && element["isFulfilled"] == true);
     searchResults.forEach((element) async{
-        _requests.add({
-          "isFulfilled" : element["isFulfilled"],
-          "requiredBlood" : element["requiredBlood"],
-          "time" : element["time"]
-        });
+        _requests = searchResults.toList();
         final String id = element.id;
         await getDonors(id);
     });
+    doneResults.forEach((element) async{
+      _completedRequests = doneResults.toList();
+      final String id = element.id;
+      await getCompletedRequestDonors(id);
+    });
     notifyListeners();
   }
+
   void clearLists(){
     _donors = [];
     _requests = [];

@@ -48,6 +48,7 @@ dependencies:
   geolocator:
   geoflutterfire:
   intl:
+  url_launcher:
 
 dev_dependencies:
   flutter_test:

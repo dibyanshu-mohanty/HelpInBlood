@@ -64,7 +64,7 @@ class HomeScreen extends StatelessWidget {
                       color: Colors.black,
                     ),
                     title: Text(
-                      "Check Requests",
+                      "Check Status",
                       softWrap: true,
                       style:
                       TextStyle(fontSize: 4.w, fontWeight: FontWeight.w500),
@@ -91,7 +91,7 @@ class HomeScreen extends StatelessWidget {
                                 color: Colors.black,
                               ),
                               title: Text(
-                                "Notifications",
+                                "Check Requests",
                                 softWrap: true,
                                 style: TextStyle(
                                     fontSize: 4.w, fontWeight: FontWeight.w500),
