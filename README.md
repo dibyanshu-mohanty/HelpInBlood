@@ -1,8 +1,7 @@
 
 # HelpInBlood
 
-Your Pocket Friendly Go to Blood Bank. HelpInBlood conencts you to 
-need in blood people and helps you to donate your blood for a good cause with all the 
+Your Pocket Friendly Go to Blood Bank. HelpInBlood conencts you to need in blood people and helps you to donate your blood for a good cause with all the 
 safety checks and verification processes.
 
 
@@ -12,41 +11,34 @@ Blood banks today are very efﬁcient and almost well connected with all the hos
 
 
 ## Proposed Solution
-❏ We are creating an interface for donors and the patients where live donors can be traced, and we have their locations on track.
-❏ We are also creating a unified blood bank where blood banks can register and manage their inventories.
-❏ Every time a patient marks a need request for blood, all the potential donors with the same blood group and across a speciﬁc radius will get a notiﬁcation for this request. They can accept or reject the request and then the patient side will contact the accepted party.
+- We are creating an interface for donors and the patients where live donors can be traced, and we have their locations on track.
+- We are also creating a unified blood bank where blood banks can register and manage their inventories.
+- Every time a patient marks a need request for blood, all the potential donors with the same blood group and across a speciﬁc radius will get a notiﬁcation for this   request. They can accept or reject the request and then the patient side will contact the accepted party.
 
 
 ## Tech Stack
 
-**Frontend:** Flutter, Pub.dev
+<img src="https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white">
+<img src="https://img.shields.io/badge/firebase-ffca28?style=for-the-badge&logo=firebase&logoColor=black">
 
-**Backend Service:** Firebase
+## Features Built till Now
+- Realtime Location Tracking
+- Seamless Request Transmission
+- Enhanced Support System 
 
+## Flow
 
-## Run Locally
-
-Clone the project
-
-```bash
-  git clone https://github.com/dibyanshu-mohanty/HelpInBlood.git
 ```
-
-Open Android Studio
-
-Go to the project directory
-
-```bash
-  cd HelpInBlood
+| - Request Blood
+  | - Choose Required Blood Type
+    - Enter Phone Number
+    | - Backend searches for Currently present donors within 20km and sends notifications
+| - Donor Signin
+  | - Enter basic details
+    - Upload official ID and Complete Blood Test
+  | - Manually the ideantification of the user is verified along with his health
+    - Once verified, the user will start recieving notifications for requests
+| - Search Requests
+  | - Entered phone number is then searched in the backend for all the ongoing as well completed Blood requests and can be 
+      easily tracked.
 ```
-
-Run the App
-
-
-
-## Features
-
-- Realtime Location Toggle
-- Get Notiifcation around your current location only
-- Cross platform
-
